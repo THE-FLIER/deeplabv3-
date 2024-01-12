@@ -45,7 +45,13 @@ DATASET_YEAR_DICT = {
         'filename': 'VOCtrainval_06-Nov-2007.tar',
         'md5': 'c52e279531787c972589f7e41ab4ae64',
         'base_dir': 'VOCdevkit/VOC2007'
-    }
+    },
+    '661': {
+            'url': '',
+            'filename': '',
+            'md5': '',
+            'base_dir': 'VOC_661'
+        }
 }
 
 
@@ -90,9 +96,9 @@ class VOCSegmentation(data.Dataset):
                  transform=None):
 
         is_aug=False
-        if year=='2012_aug':
+        if year=='661_aug':
             is_aug = True
-            year = '2012'
+            year = '661'
         
         self.root = os.path.expanduser(root)
         self.year = year
@@ -116,7 +122,7 @@ class VOCSegmentation(data.Dataset):
         if is_aug and image_set=='train':
             mask_dir = os.path.join(voc_root, 'SegmentationClassAug')
             assert os.path.exists(mask_dir), "SegmentationClassAug not found, please refer to README.md and prepare it manually"
-            split_f = os.path.join( self.root, 'train_aug.txt')#'./datasets/data/train_aug.txt'
+            split_f = os.path.join( voc_root, '/train_aug.txt')#'./datasets/data/train_aug.txt'
         else:
             mask_dir = os.path.join(voc_root, 'SegmentationClass')
             splits_dir = os.path.join(voc_root, 'ImageSets/Segmentation')

@@ -43,7 +43,7 @@ def _segm_resnet(name, backbone_name, num_classes, output_stride, pretrained_bac
         replace_stride_with_dilation=replace_stride_with_dilation)
     
     inplanes = 2048
-    low_level_planes = 256
+    low_level_planes = 1024
 
     if name=='deeplabv3plus':
         return_layers = {'layer4': 'out', 'layer1': 'low_level'}
